@@ -98,3 +98,8 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy-2:
+          context: deploy-context
+          filters:
+            branches:
+              only: master
