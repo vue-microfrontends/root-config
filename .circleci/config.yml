@@ -65,9 +65,13 @@ jobs:
             echo "Uploading root-config module"
             mv dist/index.html .
             gsutil cp ./dist/** gs://$BUCKET_NAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1
+
+  deploy-2:
+    docker:
+      - image: clue/httpie
+    steps:
       - run:
-          docker:
-            - image: clue/httpie
+          name: deploy-2
           command: |
             echo "Updating import map"
             echo '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }'
