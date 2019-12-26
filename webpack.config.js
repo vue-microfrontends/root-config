@@ -3,9 +3,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = env => ({
-  entry: path.resolve(__dirname, "src/root-config"),
+  entry: path.resolve(__dirname, "src/vue-mf-root-config"),
   output: {
-    filename: "root-config.js",
+    filename: "vue-mf-root-config.js",
     libraryTarget: "system",
     path: path.resolve(__dirname, "dist")
   },
