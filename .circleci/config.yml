@@ -70,7 +70,7 @@ jobs:
             clue/httpie
             echo "Updating import map"
             echo '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }'
-            http PATCH $DEPLOYER_HOST/services\?env=$DEPLOYER_ENV service=@vue-mf/$CIRCLE_PROJECT_REPONAME url=https://$CF_PUBLIC_URL/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/vue-mf-$CIRCLE_PROJECT_REPONAME.js -a $DEPLOYER_USERNAME:$DEPLOYER_PASSWORD
+            http PATCH http://$DEPLOYER_HOST/services\?env=$DEPLOYER_ENV service=@vue-mf/$CIRCLE_PROJECT_REPONAME url=https://$CF_PUBLIC_URL/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/vue-mf-$CIRCLE_PROJECT_REPONAME.js -a $DEPLOYER_USERNAME:$DEPLOYER_PASSWORD
             # curl -u $DEPLOYER_USERNAME:$DEPLOYER_PASSWORD -d '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }' -X PATCH http://$DEPLOYER_HOST/services\?env=$DEPLOYER_ENV -H "Accept:application/json" -H "Content-Type:application/json" --fail --insecure -i
             # echo "Uploading index.html file"
             # gsutil cp ./index.html gs://$BUCKET_NAME
