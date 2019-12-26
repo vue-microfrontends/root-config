@@ -1,0 +1,91 @@
+version: 2
+jobs:
+  setup:
+    docker:
+      - image: circleci/node:12.13.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+  build:
+    docker:
+      - image: circleci/node:12.13.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Build
+          command: |
+            yarn build
+            ls dist
+      - save_cache:
+          key: build-output-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
+      - store_artifacts:
+          path: dist
+          destination: dist
+  test:
+    docker:
+      - image: circleci/node:12.13.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Test and Lint
+          command: yarn lint
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+
+    steps:
+      - restore_cache:
+          key: build-output-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Deploy
+          command: |
+            echo "Going to correct directory"
+            cd /home/circleci/project/
+            ls dist
+            echo "Creating google application credentials json file"
+            echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > google-application-credentials.json
+            echo "Authenticating with Google"
+            gcloud auth activate-service-account --key-file google-application-credentials.json
+            echo "Commit sha is $CIRCLE_SHA1. This will be the directory name under $CIRCLE_PROJECT_REPONAME in Cloud Storage."
+            echo "Uploading root-config module"
+            mv dist/index.html .
+            gsutil cp ./dist/** gs://$BUCKET_NAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1
+            echo "Updating import map"
+            echo '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }'
+            curl -u $DEPLOYER_USERNAME:$DEPLOYER_PASSWORD -d '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }' -X PATCH http://$DEPLOYER_HOST/services\?env=$DEPLOYER_ENV -H "Accept:application/json" -H "Content-Type:application/json" --fail --insecure -i
+            echo "Uploading index.html file"
+            gsutil cp ./index.html gs://$BUCKET_NAME
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - setup
+      - build:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - deploy:
+          context: deploy-context
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: master
