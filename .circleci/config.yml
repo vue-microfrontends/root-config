@@ -52,7 +52,7 @@ jobs:
       - restore_cache:
           key: build-output-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: Upload files
+          name: Deploy
           command: |
             echo "Going to correct directory"
             cd /home/circleci/project/
