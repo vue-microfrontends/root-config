@@ -100,6 +100,8 @@ workflows:
               only: master
       - deploy-2:
           context: deploy-context
+          requires:
+            - deploy
           filters:
             branches:
               only: master
