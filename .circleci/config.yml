@@ -66,7 +66,8 @@ jobs:
             mv dist/index.html .
             gsutil cp ./dist/** gs://$BUCKET_NAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1
       - run:
-          image: clue/httpie
+          docker:
+            - image: clue/httpie
           command: |
             echo "Updating import map"
             echo '{ "service":"@vue-mf/'"$CIRCLE_PROJECT_REPONAME"'","url":"https://'"$CF_PUBLIC_URL"'/'"$CIRCLE_PROJECT_REPONAME"'/'"$CIRCLE_SHA1"'/vue-mf-'"$CIRCLE_PROJECT_REPONAME"'.js" }'
