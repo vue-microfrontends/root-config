@@ -4,22 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Vue Microfrontends</title>
   <meta name="importmap-type" content="systemjs-importmap" />
   <script type="systemjs-importmap" src="https://storage.googleapis.com/vue.microfrontends.app/importmap.json"></script>
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@vue-mf/root-config": "http://localhost:9000/root-config.js"
+        "@vue-mf/root-config": "http://localhost:9000/vue-mf-root-config.js"
       }
     }
   </script>
   <% } %>
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.js"></script>
 </head>
 <body>
   <script>
