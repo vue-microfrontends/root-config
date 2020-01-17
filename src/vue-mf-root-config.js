@@ -7,4 +7,10 @@ registerApplication(
   isActive.navbar
 );
 
+registerApplication(
+  "@vue-mf/dogs-dashboard",
+  () => System.import("@vue-mf/dogs-dashboard"),
+  isActive.dogsDashboard
+);
+
 start();
