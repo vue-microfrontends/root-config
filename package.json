@@ -35,8 +35,6 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "single-spa": "^4.4.2",
-    "vue": "^2.6.11",
-    "vue-router": "^3.1.5"
+    "single-spa": "^4.4.2"
   }
 }
