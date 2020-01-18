@@ -20,4 +20,12 @@ describe("activity functions", () => {
     location.pathname = "/rate-doggos";
     expect(isActive.dogsDashboard(location)).toBe(false);
   });
+
+  it("activates rate dogs on correct routes", () => {
+    expect(isActive.rateDogs(location)).toBe(false);
+    location.pathname = "/rate-doggos";
+    expect(isActive.rateDogs(location)).toBe(true);
+    location.pathname = "/view-doggos";
+    expect(isActive.rateDogs(location)).toBe(false);
+  });
 });

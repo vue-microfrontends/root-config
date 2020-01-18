@@ -13,4 +13,10 @@ registerApplication(
   isActive.dogsDashboard
 );
 
+registerApplication(
+  "@vue-mf/rate-dogs",
+  () => System.import("@vue-mf/rate-dogs"),
+  isActive.rateDogs
+);
+
 start();

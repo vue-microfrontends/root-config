@@ -6,3 +6,7 @@ export function navbar(location) {
 export function dogsDashboard(location) {
   return location.pathname.startsWith("/view-doggos");
 }
+
+export function rateDogs(location) {
+  return location.pathname.startsWith("/rate-doggos");
+}
