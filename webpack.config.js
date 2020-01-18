@@ -37,5 +37,5 @@ module.exports = env => ({
     }),
     new CleanWebpackPlugin()
   ],
-  externals: ["single-spa", /^@vue-mf\/.+$/]
+  externals: ["single-spa", "vue", "vue-router", /^@vue-mf\/.+$/]
 });
