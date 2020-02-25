@@ -1,6 +1,6 @@
 # Vue Microfrontends root-config
 
-Start here if you're learning microfrontends.
+[![CircleCI](https://circleci.com/gh/vue-microfrontends/root-config.svg?style=svg)](https://circleci.com/gh/vue-microfrontends/root-config)
 
 ## What is this?
 
