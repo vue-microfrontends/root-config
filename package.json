@@ -2,7 +2,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development --port 9000 --env.isLocal=true",
     "lint": "eslint src",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "prettier": "prettier --write './**'",
     "build": "webpack --mode=production"
   },

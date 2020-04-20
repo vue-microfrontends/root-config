@@ -1,22 +1,21 @@
 import { registerApplication, start } from "single-spa";
-import * as isActive from "./activity-functions";
 
-registerApplication(
-  "@vue-mf/navbar",
-  () => System.import("@vue-mf/navbar"),
-  isActive.navbar
-);
+registerApplication({
+  name: "@vue-mf/navbar",
+  app: () => System.import("@vue-mf/navbar"),
+  activeWhen: "/"
+});
 
-registerApplication(
-  "@vue-mf/dogs-dashboard",
-  () => System.import("@vue-mf/dogs-dashboard"),
-  isActive.dogsDashboard
-);
+registerApplication({
+  name: "@vue-mf/dogs-dashboard",
+  app: () => System.import("@vue-mf/dogs-dashboard"),
+  activeWhen: "/view-doggos"
+});
 
-registerApplication(
-  "@vue-mf/rate-dogs",
-  () => System.import("@vue-mf/rate-dogs"),
-  isActive.rateDogs
-);
+registerApplication({
+  name: "@vue-mf/rate-dogs",
+  app: () => System.import("@vue-mf/rate-dogs"),
+  activeWhen: "/rate-doggos"
+});
 
 start();
