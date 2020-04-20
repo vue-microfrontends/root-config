@@ -39,7 +39,7 @@ Go to https://localhost:9000/vue-mf-root-config.js and verify that you are able 
 Now, go to https://vue.microfrontends.app. In the browser console, run the following:
 
 ```js
-localStorage.setItem('devtools', true);
+localStorage.setItem("devtools", true);
 ```
 
 Refresh the page. Click on the tan / beige rectangle:
