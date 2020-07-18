@@ -4,6 +4,9 @@ registerApplication({
   name: "@vue-mf/navbar",
   app: () => System.import("@vue-mf/navbar"),
   activeWhen: "/",
+  customProps: {
+    githubLink: "https://github.com/vue-microfrontends/root-config",
+  },
 });
 
 registerApplication({
