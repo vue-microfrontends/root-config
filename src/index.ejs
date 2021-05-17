@@ -19,6 +19,17 @@
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+  <template id="single-spa-layout">
+    <single-spa-router>
+        <application name="@vue-mf/navbar" loader="navbar" props="githubLink"></application>
+        <route path="view-doggos">
+          <application name="@vue-mf/dogs-dashboard"></application>
+        </route>
+        <route path="rate-doggos">
+          <application name="@vue-mf/rate-dogs"></application>
+        </route>
+    </single-spa-router>
+  </template>
 </head>
 <body>
   <script>
