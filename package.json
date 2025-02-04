@@ -48,5 +48,6 @@
     "single-spa": "^6.0.3",
     "single-spa-layout": "^3.0.0"
   },
-  "types": "dist/vue-mf-root-config.d.ts"
+  "types": "dist/vue-mf-root-config.d.ts",
+  "packageManager": "pnpm@10.2.0"
 }
