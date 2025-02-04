@@ -1,0 +1,9 @@
+{
+  "extends": "ts-config-single-spa",
+  "files": ["src/vue-mf-root-config.ts"],
+  "compilerOptions": {
+    "declarationDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
+}

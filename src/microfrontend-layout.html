@@ -1,0 +1,18 @@
+<single-spa-router>
+  <!--
+
+    This is the single-spa Layout Definition for your microfrontends.
+    See https://single-spa.js.org/docs/layout-definition/ for more information.
+
+  -->
+
+  <application name="@vue-mf/navbar"></application>
+  <main>
+    <route path="view-doggos">
+      <application name="@vue-mf/dogs-dashboard"></application>
+    </route>
+    <route path="rate-doggos">
+      <application name="@vue-mf/rate-dogs"></application>
+    </route>
+  </main>
+</single-spa-router>
