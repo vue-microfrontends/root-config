@@ -11,16 +11,6 @@
   <!-- More info at https://github.com/single-spa/import-map-overrides/blob/main/docs/configuration.md#domain-list -->
   <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
 
-  <!-- Shared dependencies go into this import map -->
-  <script type="injector-importmap">
-    {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js"
-      }
-    }
-  </script>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js" as="module">
-
   <!-- Add your organization's prod import map URL to this script's src  -->
   <script type="injector-importmap" src="https://vue.microfrontends.app/importmap.json"></script>
 
