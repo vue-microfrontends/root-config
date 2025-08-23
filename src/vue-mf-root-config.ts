@@ -17,4 +17,8 @@ const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
 layoutEngine.activate();
-start();
+
+// @ts-ignore
+import(/* webpackIgnore: true */ "@vue-mf/styleguide").then(() => {
+  start();
+});
